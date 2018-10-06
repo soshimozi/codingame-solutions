@@ -5,6 +5,8 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
+
+
 namespace CodinGameSolutions
 {
     namespace UltimateTicTacToe
@@ -14,6 +16,9 @@ namespace CodinGameSolutions
         //[3][4][5]
         //[6][7][8]
         //Flattened: [0][1][2][3][4][5][6][7][8]
+
+        // A flattened array is used to simplify search
+        // Square either has [X] [O] [ ]
         /**
   * Auto-generated code below aims at helping you parse
   * the standard input according to the problem statement.
@@ -29,7 +34,7 @@ namespace CodinGameSolutions
                 for (int i = 0; i < 9; ++i) { m_boardValues.Add("");}
             }
 
-
+            //Copy constructor
             public Board(Board _board, int _indexOfMove, bool _isMax)
             {
                 m_boardValues = new List<string>(_board.m_boardValues);
@@ -38,12 +43,15 @@ namespace CodinGameSolutions
             }
 
             List<string> m_boardValues; 
+
+            //Possible variations from this board
             List<Board> m_possibleBoardList;
 
             int m_rating = 0;
 
             public void EvaluateBoard(bool _isMax, int _currentDepth)
             {
+                //Verify if there is already a winner - If so rate the Board
                 string winner = GetGameWinner();
                 if (winner != "")
                 {
@@ -52,32 +60,29 @@ namespace CodinGameSolutions
                 }
                 
                 if (_currentDepth >= MAX_SEARCH_DEPTH) { return; }
-                m_possibleBoardList = new List<Board>();
-                List<int> emptySquareIndices = new List<int>();
 
+                //Find all empty spaces ("")
+                List<int> emptySquareIndices = new List<int>();
+        
                 for (int i = 0; i < m_boardValues.Count; ++i)
                 {
-                    bool isEmpty = m_boardValues[i] == "";
-
-                    if (isEmpty)
+                    if (m_boardValues[i] == "")
                     {
                         emptySquareIndices.Add(i);
                     }
                 }
-
+                //Generate new positions from each empty square and add them to possible positions
+                m_possibleBoardList = new List<Board>();
                 foreach (int _index in emptySquareIndices)
                 {
                     m_possibleBoardList.Add(new Board(this, _index, _isMax));
                 }
 
-                if (_currentDepth <= MAX_SEARCH_DEPTH)
+                //Evaluate all possible solutions (MAX for us, MIN for opponent)
+                foreach (Board _board in m_possibleBoardList)
                 {
-                    foreach (Board _board in m_possibleBoardList)
-                    {
-                        _board.EvaluateBoard(!_isMax, _currentDepth + 1);
-                    }
+                    _board.EvaluateBoard(!_isMax, _currentDepth + 1);
                 }
-
             }
 
             private string GetGameWinner()
@@ -102,8 +107,6 @@ namespace CodinGameSolutions
                     }
                 }
 
-                //DIAGONAL TIC TAC TOE
-
                 //TOP LEFT TO BOTTOM RIGHT
                 if (m_boardValues[0] != "")
                 {
@@ -124,12 +127,14 @@ namespace CodinGameSolutions
 
                 return "";
             }
-
+            
+            //transforms the 2D array position to a flat array index
             public static int PositionToIndex(int _x, int _y)
             {
                 return _y * 3 + _x;
             }
 
+            //transform the flat array index into a 2D array position
             public static void IndexToPosition(int _index, out int _x, out int _y)
             {
                 _y = (int)Math.Floor((_index / 3.0f));
@@ -137,7 +142,7 @@ namespace CodinGameSolutions
             }
 
 
-
+            //Finds the best next move based on the possible moves from the current board
             internal void GetBestMove(bool _isMax,out int _x, out int _y)
             {
                 if (_isMax)
@@ -153,6 +158,7 @@ namespace CodinGameSolutions
                 IndexToPosition(bestBoard.m_indexOfLastMove,out _x, out _y);
             }
 
+            //Prints debug info about the board
             public string Print()
             {
                 string value = "";
@@ -171,8 +177,6 @@ namespace CodinGameSolutions
 
         class Player
         {
-            const string X = "X";
-            const string O = "O";
 
             /// <summary>
             /// Defines the entry point of the application.
@@ -204,26 +208,32 @@ namespace CodinGameSolutions
                     int bestMoveX = 0;
                     int bestMoveY = 0;
 
+                    //If opponent has played, create a new board with his added move and set is as our current board
                     if (opponentRow != -1)
                     {
                         currentBoard = new Board(currentBoard, Board.PositionToIndex(opponentCol, opponentRow), false);
                     }
                     
-                    
+                    //Evaluate our current board and get best move
                     currentBoard.EvaluateBoard(true, 0);
                     currentBoard.GetBestMove(true, out bestMoveX, out bestMoveY);
+
+                    //Create a new board with our added next move and evaluate it
                     currentBoard = new Board(currentBoard, Board.PositionToIndex(bestMoveX, bestMoveY), true);
                     currentBoard.EvaluateBoard(true, 0);
-                    Console.Error.WriteLine(currentBoard.Print());
-                    // Write an action using Console.WriteLine()
-                    // To debug: Console.Error.WriteLine("Debug messages...");
+
+                    
+                    //Console.Error.WriteLine(currentBoard.Print());
 
 
+                    //Output best move
                     Console.WriteLine(bestMoveY + " " + bestMoveX);
                 }
             }
         }
 
+
+        //Extension method to compare many strings to one and return if they are all equal
         public static class Extensions
         {
             static public bool AllEquals(string _firstValue, params string[] _elements)

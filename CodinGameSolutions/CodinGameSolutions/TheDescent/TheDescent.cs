@@ -22,18 +22,26 @@ namespace CodinGameSolutions
                 // game loop
                 while (true)
                 {
+                    // Map of index of mountain and height of mountain
                     Dictionary<int, int> heightMap = new Dictionary<int, int>();
+
+                    //List of mountain heights
                     List<int> heightList = new List<int>();
+
+                    //Iterate through each mountain and fill in the map / list with current heights
                     for (int i = 0; i < 8; i++)
                     {
                         int mountainH = int.Parse(Console.ReadLine()); // represents the height of one mountain.
                         heightMap[i] = mountainH;
                         heightList.Add(mountainH);
                     }
+
+                    //Reorder the heightList map from Highest to Lowest height
                     heightList = heightList.OrderByDescending(x => x).ToList();
 
                     int highestMountainValue = heightList[0];
 
+                    //Now that we have the highest mountain, find the index of the mountain of that height using the map
                     int indexOfHighestMountain =0;
                     foreach (KeyValuePair<int, int> _kvp in heightMap)
                     {
@@ -43,7 +51,8 @@ namespace CodinGameSolutions
                         }
                     }
 
-                    Console.WriteLine(indexOfHighestMountain); // The index of the mountain to fire on.
+                    //Output the index of the mountain to fire on
+                    Console.WriteLine(indexOfHighestMountain);
                 }
             }
         }

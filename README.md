@@ -17,3 +17,6 @@ Extract the file and launch the solution inside CodinGameSolutions
 
 ## Enjoy!
 
+twitch.tv/engihero for CodinGame livestreams
+
+

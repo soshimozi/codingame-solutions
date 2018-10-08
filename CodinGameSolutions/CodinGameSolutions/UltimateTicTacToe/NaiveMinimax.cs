@@ -1,9 +1,6 @@
 using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 
 
@@ -182,7 +179,7 @@ namespace CodinGameSolutions
             /// Defines the entry point of the application.
             /// </summary>
             /// <param name="args">The arguments.</param>
-            static void Main(string[] args)
+            static void Maaaain(string[] args)
             {
                 string[] inputs;
                 Board currentBoard = new Board();

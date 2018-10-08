@@ -42,11 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeRoyale\Core\BuildingLocation.cs" />
+    <Compile Include="CodeRoyale\Core\Core.cs" />
+    <Compile Include="CodeRoyale\Core\GameData.cs" />
+    <Compile Include="CodeRoyale\Core\GameDefs.cs" />
+    <Compile Include="CodeRoyale\Core\Helper.cs" />
+    <Compile Include="CodeRoyale\Core\Unit.cs" />
+    <Compile Include="CodeRoyale\Heuristics\EvaluationSystem.cs" />
+    <Compile Include="CodeRoyale\Heuristics\Heuristic.cs" />
+    <Compile Include="CodeRoyale\Main.cs" />
+    <Compile Include="CodeRoyale\Strategy\Strategies.cs" />
+    <Compile Include="CodeRoyale\Strategy\StrategyManager.cs" />
+    <Compile Include="CodersStrikeBack\CodersStrikeBack.cs" />
+    <Compile Include="MarsLander\MarsLanderEp1.cs" />
     <Compile Include="PowerOfThor\PowerOfThor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Temperatures\Temperatures.cs" />
     <Compile Include="TheDescent\TheDescent.cs" />
     <Compile Include="UltimateTicTacToe\NaiveMinimax.cs" />
+    <Compile Include="Utility\Vector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -55,4 +69,7 @@
     <Content Include="UltimateTicTacToe\Random.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)SharpNamespaceBlobber.exe Utility CodeRoyale</PostBuildEvent>
+  </PropertyGroup>
 </Project>

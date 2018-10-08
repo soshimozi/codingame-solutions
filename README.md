@@ -42,21 +42,21 @@ Launch the executable.
 ### _Adding Namespaces_
 
 Namespaces are added as launch options. **Example:**
-    SharpNamespaceBlobber.exe CodinGame Utility
-*This will only blob files containing the CodinGame and/or Utility namespaces. If no namespaces are given the program will terminate and no blob.cs file will be generated.*
+*SharpNamespaceBlobber.exe CodinGame Utility*
+This will only blob files containing the CodinGame and/or Utility namespaces. If no namespaces are given the program will terminate and no blob.cs file will be generated.
 
 ### _Adding additional Ignore directories_
 
 Additional ignore directories are also specified as launch options but the Directory must use the xignore prefix. **Example:**
-    SharpNamespaceBlobber.exe xignoreMyDirectory xignoreMyOtherDirectory
-*This will ignore MyDirectory and MyOtherDirectory when looking for .cs files*
+*SharpNamespaceBlobber.exe xignoreMyDirectory xignoreMyOtherDirectory*
+This will ignore MyDirectory and MyOtherDirectory when looking for .cs files
 
 ### _Combining arguments_
 
 Namespaces and ignore files can be added together as launch options. **Example:**
 
-SharpNamespaceBlobber.exe CodinGame xignoreMyDirectory Utility xignoreMyOtherDirectory
-*This will add CodinGame and Utility as valid namespaces to parse, and will exclude MyDirectory and MyOtherDirectory from the .cs file search*
+*SharpNamespaceBlobber.exe CodinGame xignoreMyDirectory Utility xignoreMyOtherDirectory*
+This will add CodinGame and Utility as valid namespaces to parse, and will exclude MyDirectory and MyOtherDirectory from the .cs file search
 
 ### _Defaults_
 

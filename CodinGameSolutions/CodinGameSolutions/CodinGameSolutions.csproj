@@ -42,16 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeRoyale\CodeRoyaleReferee\CodeRoyaleReferee.cs" />
+    <Compile Include="CodeRoyale\CodeRoyaleReferee\EntityManager.cs" />
+    <Compile Include="CodeRoyale\CodeRoyaleReferee\RefereeData.cs" />
     <Compile Include="CodeRoyale\Core\BuildingLocation.cs" />
     <Compile Include="CodeRoyale\Core\Core.cs" />
+    <Compile Include="CodeRoyale\Core\Entity.cs" />
     <Compile Include="CodeRoyale\Core\GameData.cs" />
     <Compile Include="CodeRoyale\Core\GameDefs.cs" />
     <Compile Include="CodeRoyale\Core\Helper.cs" />
     <Compile Include="CodeRoyale\Core\Unit.cs" />
     <Compile Include="CodeRoyale\Heuristics\EvaluationSystem.cs" />
     <Compile Include="CodeRoyale\Heuristics\Heuristic.cs" />
+    <Compile Include="CodeRoyale\Heuristics\HeuristicData.cs" />
     <Compile Include="CodeRoyale\Main.cs" />
-    <Compile Include="CodeRoyale\Strategy\Strategies.cs" />
+    <Compile Include="CodeRoyale\Strategy\StrategyDirector.cs" />
     <Compile Include="CodeRoyale\Strategy\StrategyManager.cs" />
     <Compile Include="CodersStrikeBack\CodersStrikeBack.cs" />
     <Compile Include="MarsLander\MarsLanderEp1.cs" />
@@ -70,6 +75,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)SharpNamespaceBlobber.exe Utility CodeRoyale</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir)SharpEngine.exe b</PostBuildEvent>
   </PropertyGroup>
 </Project>

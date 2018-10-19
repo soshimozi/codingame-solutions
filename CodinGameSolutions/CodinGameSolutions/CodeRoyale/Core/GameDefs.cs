@@ -5,17 +5,18 @@ namespace CodeRoyale
         UNSET,
         QUEEN,
         KNIGHT,
-        ARCHER
+        ARCHER,
+        GIANT
     }
 
     public enum BuildingType
     {
         NONE,
-        BARRACKS,
+        MINE,
+        TOWER,
         BARRACKS_KNIGHT,
         BARRACKS_ARCHER,
-        TOWER,
-        MINE
+        BARRACKS_GIANT
     }
 
     public enum AllianceType
@@ -23,5 +24,11 @@ namespace CodeRoyale
         NEUTRAL,
         FRIENDLY,
         HOSTILE
+    }
+
+    public enum EntityType
+    {
+        LOCATION,
+        UNIT
     }
 }
